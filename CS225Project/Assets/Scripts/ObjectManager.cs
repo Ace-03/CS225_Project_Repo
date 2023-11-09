@@ -1,18 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ObjectManager : MonoBehaviour
+public class ObjectManager : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Canvas canvas;
+
+    private RectTransform rectTransform;
+
+    private void Awake()
     {
-        
+        rectTransform = GetComponent<RectTransform>(); // Gets the item transformation
     }
 
-    // Update is called once per frame
-    void Update()
+    // Tells when the player starts to drag the item
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        Debug.Log("OnBegingDrag");
+    }
+
+    // Tells whwn the items is being dragged
+    public void OnDrag(PointerEventData eventData)
+    {
+        Debug.Log("OnDrag");
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor; // moved the item based off the mouse postion and cavan size
+    }
+
+    // Tells when the Player stops dragging item
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Debug.Log("OnEndDrag");
+    }
+
+    // Tells when the cursor is pushed down
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("OnPointerDown");
     }
 }
