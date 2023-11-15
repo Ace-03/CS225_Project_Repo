@@ -1,0 +1,28 @@
+//on every element in game 
+//OntriggerEnter2D() check if this is the held object then check if the other object is an element.
+//if so then call the CalculateRecipe() function from the ChemManager sending this objects element type.
+//and the other objects element type. If the CalculateRecipe() function returns Null then just return the OntriggerEnter2D() function.
+//if the CalculateRecipe() function returns an element then Spawn that element, destroy the other gameobject, and destroy this object.
+
+//Hold what type of element it is and some private data
+// there will be an isHeldObject bool
+// there will be a data member to determine what element this object is
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ElementBehaviour : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
