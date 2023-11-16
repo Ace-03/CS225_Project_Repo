@@ -24,8 +24,34 @@ public class ElementBehaviour : MonoBehaviour
 
     public elementType ingredient1;
     public elementType ingredient2;
-    
-    public void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Objects touched");
+        if (collision.gameObject.CompareTag("Element"))
+        {
+            ElementBehaviour otherElement = collision.gameObject.GetComponent<ElementBehaviour>();
+            //Debug.Log("This object is " + this.name);
+            //Debug.Log("Combine with " + otherElement.name);
+            GameObject productElement = ChemManager.instance.CalculateRecipe(this.element, otherElement.element);
+
+            if (otherElement.element == elementType.mud)
+            {
+                Debug.Log("Tried to combine with mud");
+            }
+
+            if (productElement != null)
+            {
+                Instantiate(productElement, this.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+    /*
+    void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Objects touched");
         if (collision.gameObject.CompareTag("Element"))
@@ -42,4 +68,5 @@ public class ElementBehaviour : MonoBehaviour
             }
         }
     }
+    */
 }
