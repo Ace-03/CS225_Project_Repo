@@ -10,8 +10,71 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ObjectManager : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+
+public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    private bool moving;
+
+    private float startPosX;
+    private float startPosY;
+
+    void Update()
+    {
+        if (moving)
+        {
+            Vector3 mousePos;
+            mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            this.gameObject.transform.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY);
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePos;
+            mousePos = Input.mousePosition;
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            startPosX = mousePos.x - this.transform.localPosition.x;
+            startPosY = mousePos.y - this.transform.localPosition.y;
+
+            moving = true;
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        moving = false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     [SerializeField] private Canvas canvas;
 
     private RectTransform rectTransform;
@@ -45,4 +108,5 @@ public class ObjectManager : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     {
         //Debug.Log("OnPointerDown");
     }
+    */
 }
