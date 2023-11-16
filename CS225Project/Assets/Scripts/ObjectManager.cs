@@ -24,25 +24,25 @@ public class ObjectManager : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     // Tells when the player starts to drag the item
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBegingDrag");
+        //Debug.Log("OnBegingDrag");
     }
 
     // Tells whwn the items is being dragged
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        //Debug.Log("OnDrag");
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor; // moved the item based off the mouse postion and cavan size
     }
 
     // Tells when the Player stops dragging item
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
+        //Debug.Log("OnEndDrag");
     }
 
     // Tells when the cursor is pushed down
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("OnPointerDown");
+        //Debug.Log("OnPointerDown");
     }
 }

@@ -14,15 +14,32 @@ using UnityEngine;
 
 public class ElementBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum elementType
     {
-        
+        NULL, fire, water, earth, mud, steam, magma 
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool isHeldObject;
+    public elementType element;
+
+    public elementType ingredient1;
+    public elementType ingredient2;
+    
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        Debug.Log("Objects touched");
+        if (collision.gameObject.CompareTag("Element"))
+        {
+            ElementBehaviour otherElement = collision.gameObject.GetComponent<ElementBehaviour>();
+            GameObject productElement = ChemManager.instance.CalculateRecipe(this.element, otherElement.element);
+            if (productElement != null)
+            {
+                Instantiate(productElement, this.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }

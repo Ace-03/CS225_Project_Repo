@@ -6,18 +6,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ElementBehaviour;
 
 public class ChemManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject[] cookBook;
+    public static ChemManager instance;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake() { instance = this; }
+
+
+    public GameObject CalculateRecipe(elementType ele1, elementType ele2)
     {
-        
+        foreach (GameObject x in cookBook)
+        {
+            ElementBehaviour bookElement = x.GetComponent<ElementBehaviour>();
+            if ((ele1 == bookElement.ingredient1 && ele2 == bookElement.ingredient2) || (ele1 == bookElement.ingredient2 && ele2 == bookElement.ingredient1))
+            {
+                return x;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        return null;
     }
 }
