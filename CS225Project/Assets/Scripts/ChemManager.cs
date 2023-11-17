@@ -18,18 +18,23 @@ public class ChemManager : MonoBehaviour
 
     public GameObject CalculateRecipe(elementType ele1, elementType ele2)
     {
+        Debug.Log("Calculating Recipe");
         foreach (GameObject x in cookBook)
         {
+            Debug.Log("Checking if items match recipe for " + x);
             ElementBehaviour bookElement = x.GetComponent<ElementBehaviour>();
+
+            Debug.Log("ingredient 1 of " + x + " is " + bookElement.ingredient1);
+            Debug.Log("ingredient 2 of " + x + " is " + bookElement.ingredient2);
+
             if ((ele1 == bookElement.ingredient1 && ele2 == bookElement.ingredient2) || (ele1 == bookElement.ingredient2 && ele2 == bookElement.ingredient1))
             {
+                Debug.Log("Recipe match found");
+                //return cookBook[1];
                 return x;
             }
-            else
-            {
-                return null;
-            }
         }
+        Debug.Log("Recipe Match Not Found");
         return null;
     }
 }

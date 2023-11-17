@@ -18,6 +18,9 @@ public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHan
 
     private float startPosX;
     private float startPosY;
+    private bool triggerEnabled = true;
+    
+
 
     void Update()
     {
@@ -28,6 +31,15 @@ public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHan
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
             this.gameObject.transform.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY);
+            
+            
+            if(triggerEnabled)
+            {
+                GetComponent<BoxCollider2D>().enabled = false;
+                GetComponent<ElementBehaviour>().isHeldObject = true;
+                triggerEnabled = false;
+            }
+
         }
     }
 
@@ -49,6 +61,16 @@ public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHan
     private void OnMouseUp()
     {
         moving = false;
+        GetComponent<BoxCollider2D>().enabled = true;
+        StartCoroutine(NotHeld());
+        triggerEnabled = true;
+
+    }
+
+    IEnumerator NotHeld()
+    {
+        yield return new WaitForSeconds(0.06f);
+        GetComponent<ElementBehaviour>().isHeldObject = false;
     }
 
 

@@ -27,22 +27,26 @@ public class ElementBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Objects touched");
-        if (collision.gameObject.CompareTag("Element"))
+        Debug.Log("Objects touched On Trigger Ran");
+        Debug.Log("Is this the held object: " + isHeldObject);
+        if (collision.gameObject.CompareTag("Element") && isHeldObject)
         {
             ElementBehaviour otherElement = collision.gameObject.GetComponent<ElementBehaviour>();
             //Debug.Log("This object is " + this.name);
             //Debug.Log("Combine with " + otherElement.name);
             GameObject productElement = ChemManager.instance.CalculateRecipe(this.element, otherElement.element);
 
-            if (otherElement.element == elementType.mud)
+            if (otherElement.element == elementType.fire)
             {
-                Debug.Log("Tried to combine with mud");
+                Debug.Log("Tried to combine with fire");
             }
 
             if (productElement != null)
             {
+                Debug.Log("Tried to create new element");
                 Instantiate(productElement, this.transform.position, Quaternion.identity);
+                Destroy(otherElement.gameObject);
+                Destroy(this.gameObject);
             }
             else
             {
@@ -68,5 +72,6 @@ public class ElementBehaviour : MonoBehaviour
             }
         }
     }
+    
     */
 }
