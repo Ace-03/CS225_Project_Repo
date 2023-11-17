@@ -32,23 +32,28 @@ public class ElementBehaviour : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Objects touched On Trigger Ran");
-        Debug.Log("Is this the held object: " + isHeldObject);
-        if (collision.gameObject.CompareTag("Element") && isHeldObject)
+        //Debug.Log("Objects touched On Trigger Ran");
+        //Debug.Log("Is this the held object: " + isHeldObject);
+        if (collision.gameObject.CompareTag("Element") && isHeldObject) 
         {
             ElementBehaviour otherElement = collision.gameObject.GetComponent<ElementBehaviour>();
             GameObject productElement = ChemManager.instance.CalculateRecipe(this.element, otherElement.element);
 
+             
             if (productElement != null)
             {
-                Debug.Log("Tried to create new element");
+                //Debug.Log("Tried to create new element");
+                // creates new element based of what ingredients are used
                 Instantiate(productElement, this.transform.position, Quaternion.identity);
 
+                // creates new copies of used ingredients 
                 gameManager.makeElement(this.element);
                 gameManager.makeElement(otherElement.element);
 
+                // destorys used ingredients
                 Destroy(otherElement.gameObject);
                 Destroy(this.gameObject);
             }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject water;
     public GameObject earth;
     
+    // creates new fire, water, or earth object 
     public GameObject makeElement(elementType elem)
     {
         Debug.Log("Tried to create element");

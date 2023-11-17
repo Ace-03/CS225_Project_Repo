@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
+    // when game start remove start button and title and create base elements
     public void onStartGame()
     {
         this.gameObject.SetActive(false);

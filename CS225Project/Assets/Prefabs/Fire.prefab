@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2704085282401153825}
   - component: {fileID: 3698782981072928068}
   - component: {fileID: -76155085666700818}
+  - component: {fileID: 7310700113817988868}
   m_Layer: 6
   m_Name: Fire
   m_TagString: Element
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1731804803
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1107179567, guid: 00a641ec3e133154286ca1973b80bdff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -157,7 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afac01f13e170945bae9ab7d1b0f6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   isHeldObject: 0
+  num: 0
   element: 1
   ingredient1: 0
   ingredient2: 0
@@ -188,3 +191,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &7310700113817988868
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769435918287698140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e670c86824b0f14687613fc4b5e189a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
