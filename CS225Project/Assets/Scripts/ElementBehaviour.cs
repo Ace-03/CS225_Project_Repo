@@ -19,11 +19,18 @@ public class ElementBehaviour : MonoBehaviour
         NULL, fire, water, earth, mud, steam, magma 
     }
 
+    public GameManager gameManager;
     public bool isHeldObject;
-    public elementType element;
+    public int num;
 
+    public elementType element;
     public elementType ingredient1;
     public elementType ingredient2;
+
+    void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,19 +39,16 @@ public class ElementBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Element") && isHeldObject)
         {
             ElementBehaviour otherElement = collision.gameObject.GetComponent<ElementBehaviour>();
-            //Debug.Log("This object is " + this.name);
-            //Debug.Log("Combine with " + otherElement.name);
             GameObject productElement = ChemManager.instance.CalculateRecipe(this.element, otherElement.element);
-
-            if (otherElement.element == elementType.fire)
-            {
-                Debug.Log("Tried to combine with fire");
-            }
 
             if (productElement != null)
             {
                 Debug.Log("Tried to create new element");
                 Instantiate(productElement, this.transform.position, Quaternion.identity);
+
+                gameManager.makeElement(this.element);
+                gameManager.makeElement(otherElement.element);
+
                 Destroy(otherElement.gameObject);
                 Destroy(this.gameObject);
             }
@@ -54,24 +58,4 @@ public class ElementBehaviour : MonoBehaviour
             }
         }
     }
-    /*
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Objects touched");
-        if (collision.gameObject.CompareTag("Element"))
-        {
-            ElementBehaviour otherElement = collision.gameObject.GetComponent<ElementBehaviour>();
-            GameObject productElement = ChemManager.instance.CalculateRecipe(this.element, otherElement.element);
-            if (productElement != null)
-            {
-                Instantiate(productElement, this.transform.position, Quaternion.identity);
-            }
-            else
-            {
-                return;
-            }
-        }
-    }
-    
-    */
 }

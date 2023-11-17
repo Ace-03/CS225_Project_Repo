@@ -20,8 +20,6 @@ public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHan
     private float startPosY;
     private bool triggerEnabled = true;
     
-
-
     void Update()
     {
         if (moving)

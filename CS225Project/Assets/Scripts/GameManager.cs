@@ -5,23 +5,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ElementBehaviour;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject fire;
+    public GameObject water;
+    public GameObject earth;
+    
+    public GameObject makeElement(elementType elem)
     {
+        Debug.Log("Tried to create element");
+        switch (elem) {
+        case elementType.fire:
+            return Instantiate(fire.gameObject);
+            //break;     
+        case elementType.water:
+            return Instantiate(water.gameObject);
+            //break;
+        case elementType.earth:
+            return Instantiate(earth.gameObject);
+            //break;
+        }
+        return null;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void Combine()
-    {
-        Debug.Log("Tried to Combine");
     }
 }
