@@ -12,7 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject fire;
     public GameObject water;
     public GameObject earth;
-    
+
+    public static GameManager instance;
+
+    private void Awake() { instance = this; }
+
     // creates new fire, water, or earth object 
     public GameObject makeElement(elementType elem)
     {

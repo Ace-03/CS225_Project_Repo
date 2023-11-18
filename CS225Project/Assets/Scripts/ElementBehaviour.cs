@@ -19,19 +19,12 @@ public class ElementBehaviour : MonoBehaviour
         NULL, fire, water, earth, mud, steam, magma 
     }
 
-    public GameManager gameManager;
     public bool isHeldObject;
     public int num;
 
     public elementType element;
     public elementType ingredient1;
     public elementType ingredient2;
-
-    void Start()
-    {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -50,8 +43,8 @@ public class ElementBehaviour : MonoBehaviour
                 Instantiate(productElement, this.transform.position, Quaternion.identity);
 
                 // creates new copies of used ingredients 
-                gameManager.makeElement(this.element);
-                gameManager.makeElement(otherElement.element);
+/*                GameManager.instance.makeElement(this.element);
+                GameManager.instance.makeElement(otherElement.element);*/
 
                 // destorys used ingredients
                 Destroy(otherElement.gameObject);
@@ -59,6 +52,8 @@ public class ElementBehaviour : MonoBehaviour
             }
             else
             {
+                GetComponentInChildren<Animator>().SetTrigger("EndAnimation");
+                collision.GetComponentInChildren<Animator>().SetTrigger("EndAnimation");
                 return;
             }
         }

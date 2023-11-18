@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Title
   - Water
   - UI
   - Element
@@ -43,12 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 955882789
-    locked: 0
   - name: UI
     uniqueID: 19987997
     locked: 0
   - name: Sprites
     uniqueID: 1731804803
+    locked: 0
+  - name: Title
+    uniqueID: 496722349
     locked: 0

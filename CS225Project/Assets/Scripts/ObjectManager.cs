@@ -13,7 +13,7 @@ using UnityEngine.EventSystems;
 
 public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    private bool moving;
+    public bool moving;
 
     private float startPosX;
     private float startPosY;
@@ -40,7 +40,7 @@ public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHan
         }
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -55,8 +55,9 @@ public class ObjectManager : MonoBehaviour//, IPointerDownHandler, IBeginDragHan
         }
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
+        Debug.Log("Mouse Button Released");
         moving = false;
         GetComponent<BoxCollider2D>().enabled = true;
         StartCoroutine(NotHeld());

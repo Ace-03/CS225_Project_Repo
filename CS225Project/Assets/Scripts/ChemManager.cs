@@ -22,7 +22,7 @@ public class ChemManager : MonoBehaviour
         foreach (GameObject x in cookBook)
         {
             Debug.Log("Checking if items match recipe for " + x);
-            ElementBehaviour bookElement = x.GetComponent<ElementBehaviour>();
+            ElementBehaviour bookElement = x.GetComponentInChildren<ElementBehaviour>();
 
             Debug.Log("ingredient 1 of " + x + " is " + bookElement.ingredient1);
             Debug.Log("ingredient 2 of " + x + " is " + bookElement.ingredient2);
