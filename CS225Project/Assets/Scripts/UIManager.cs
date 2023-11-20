@@ -20,10 +20,5 @@ public class UIManager : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         title.SetActive(false);
-
-/*        gameManager.makeElement(elementType.fire);
-        gameManager.makeElement(elementType.water);
-        gameManager.makeElement(elementType.earth);*/
-
     }
 }

@@ -11,10 +11,12 @@ public class ElementPoolBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // set the object to the postion of the mouse
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+            // makes the base element depeing on the pool and grabes the object manager
             newBaseElement = Instantiate(baseElementPrefab, mousePos, Quaternion.identity);
             newBaseElement.GetComponent<ObjectManager>().OnMouseDown();
         }
@@ -22,6 +24,7 @@ public class ElementPoolBehavior : MonoBehaviour
 
     private void OnMouseUp()
     {
+        // grabes the objcet manager 
         newBaseElement.GetComponent<ObjectManager>().OnMouseUp();
     }
 }
