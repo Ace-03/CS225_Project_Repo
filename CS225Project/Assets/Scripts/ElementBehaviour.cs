@@ -16,11 +16,10 @@ public class ElementBehaviour : MonoBehaviour
 {
     public enum elementType
     {
-        NULL, fire, water, earth, mud, steam, magma 
+        NULL, fire, water, earth, mud, steam, magma, energy, puddle, hill, volcano, wave, brick, oil, plant, glass, sand, stone, storm, rain, cloud
     }
 
     public bool isHeldObject;
-    public int num;
 
     public elementType element;
     public elementType ingredient1;
