@@ -10,13 +10,26 @@ using static ElementBehaviour;
 
 public class GameManager : MonoBehaviour
 {
+    private float playTime;
+    private bool oldDataLoaded = false;
 
     public int numOfReactions;
+    public int pachinkoSessionScore;
 
     public GameObject fire;
     public GameObject water;
     public GameObject earth;
     public static GameManager instance;
+
+
+    class GameStats
+    {
+        public float totalPlayTime;
+        public int totalReactions;
+        public int pachinkoHighScore;
+    }
+
+
 
     void Awake()
     {
@@ -27,6 +40,20 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        if (!oldDataLoaded)
+        {
+            ReadJsonFile();
+            oldDataLoaded = true;
+        }
+    }
+
+
+
+
+    private void Update()
+    {
+        playTime += Time.deltaTime;
     }
 
     // creates new fire, water, or earth object 
@@ -57,4 +84,40 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Pachinko");
     }
+
+    void OnApplicationQuit()
+    {
+        SendInJsonFormat();
+    }
+
+    // the two functions below were heavily borrowed from this powerpoint: https://erau.instructure.com/courses/160487/files/35221192/download?download_frd=1
+    // this was from SIM 251 and the slides were created by professor Slease
+    void SendInJsonFormat()
+    {
+        // create temp gameObject
+        GameStats newGameStats = new GameStats();
+
+        // set values
+        newGameStats.totalPlayTime = playTime;
+        newGameStats.totalReactions = numOfReactions;
+        newGameStats.pachinkoHighScore = pachinkoSessionScore;
+
+        // write values to json
+        string json = JsonUtility.ToJson(newGameStats, true);
+        Debug.Log(json);
+        Debug.Log(Application.persistentDataPath + "/GameStatsSaved.json");
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/GameStatsSaved.json", json);
+    }
+
+    void ReadJsonFile()
+    {
+        // create string and read data from file onto it
+        string json = System.IO.File.ReadAllText(Application.persistentDataPath + "/GameStatsSaved.json");
+        // create temp gamestats object, convert string to gamestats and set stat values.
+        GameStats oldGameStats = JsonUtility.FromJson<GameStats>(json);
+        playTime = oldGameStats.totalPlayTime;
+        numOfReactions = oldGameStats.totalReactions;
+        pachinkoSessionScore = oldGameStats.pachinkoHighScore;
+    }
+
 }

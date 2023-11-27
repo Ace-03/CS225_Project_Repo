@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PachinkoManager : MonoBehaviour
 {
@@ -29,13 +30,18 @@ public class PachinkoManager : MonoBehaviour
 
     void Update()
     {
+        // stop if the game isn't being played
         if (!playingPachinko)
             return;
 
+        // count down our time
         playTime -= Time.deltaTime;
+
+        // set timer text to current time
         if (playTime > 0)
             timerText.text = playTime.ToString("0s");
 
+        // every 3 seconds spawn a wave of marbles
         if ((int)playTime % 3 == 0 && !OnCoolDown)
         {
             OnCoolDown = true;
@@ -44,9 +50,11 @@ public class PachinkoManager : MonoBehaviour
                 StartCoroutine(MarbleSpawnProcedure(x));
         }
 
+        // end game when time runs out
         if (playTime <= 0)
             EndPachinko();
 
+        // cool down for marble spawns so they dont drop every frame
         if (OnCoolDown)
         {
             coolDownTimer += Time.deltaTime;
@@ -78,6 +86,10 @@ public class PachinkoManager : MonoBehaviour
         
         // display UI and stats
         DisplayResults();
+
+        // send score to game manager if its the new highScore
+        if (points > GameManager.instance.pachinkoSessionScore)
+            GameManager.instance.pachinkoSessionScore = points;
     }
 
     void DisplayResults()
@@ -95,8 +107,10 @@ public class PachinkoManager : MonoBehaviour
     // increment marbles on screen
     void SpawnMarble(Transform spawner)
     {
+        // roll value
         int dropRate = Random.Range(-50, 100);
 
+        // determine drop by the value rolled
         if (dropRate >= -100 && dropRate <= 40)
             dropResult = Random.Range(0, 2); // tier 1 elements
         else if (dropRate > 40 && dropRate <= 60)
@@ -110,16 +124,20 @@ public class PachinkoManager : MonoBehaviour
         else if (dropRate > 97 && dropRate <= 100)
             dropResult = 19; // tier 7 element
 
+        // create offsets
         float offSetX = Random.Range(0, 100);
         float offSetY = Random.Range(0, 100);
 
+        // set offsets to vector3
         Vector3 spawnPos = new Vector3(spawner.position.x + (offSetX/50), spawner.position.y + (offSetY/50), 0);
 
+        // instantiate marble
         Instantiate(ChemManager.instance.cookBook[dropResult], spawnPos, Quaternion.identity);
 
         marblesInGame++;
     }
 
+    //  give marble a random spawn delay
     IEnumerator MarbleSpawnProcedure(Transform spawner)
     {
         int spawnTimeOffSet = Random.Range(0, 5);
