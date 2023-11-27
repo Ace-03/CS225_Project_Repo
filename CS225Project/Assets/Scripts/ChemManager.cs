@@ -28,6 +28,16 @@ public class ChemManager : MonoBehaviour
             // if the our two objects are the same as the ingredients in our recip return our cookbook object
             if ((ele1 == bookElement.ingredient1 && ele2 == bookElement.ingredient2) || (ele1 == bookElement.ingredient2 && ele2 == bookElement.ingredient1))
             {
+                // if we're playing pachinko record this reaction.
+                if (PachinkoManager.instance != null)
+                {
+                    PachinkoManager.instance.numOfReactions++;
+                    PachinkoManager.instance.marblesInGame--;
+                }
+                // record this reaction in the gamemanager.
+                GameManager.instance.numOfReactions++;
+
+                
                 return x;
             }
         }

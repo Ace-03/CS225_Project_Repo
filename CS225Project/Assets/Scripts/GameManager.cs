@@ -5,17 +5,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static ElementBehaviour;
 
 public class GameManager : MonoBehaviour
 {
+
+    public int numOfReactions;
+
     public GameObject fire;
     public GameObject water;
     public GameObject earth;
-
     public static GameManager instance;
 
-    private void Awake() { instance = this; }
+    void Awake()
+    {
+        if (instance != null && instance != this)
+            gameObject.SetActive(false);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     // creates new fire, water, or earth object 
     public GameObject makeElement(elementType elem)
@@ -34,5 +46,15 @@ public class GameManager : MonoBehaviour
         }
         return null;
         
+    }
+
+    public void OnHomeScene()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnPachinkoScene()
+    {
+        SceneManager.LoadScene("Pachinko");
     }
 }

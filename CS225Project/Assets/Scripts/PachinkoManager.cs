@@ -1,0 +1,129 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class PachinkoManager : MonoBehaviour
+{
+    private int dropResult;
+    private bool OnCoolDown = false;
+    private float coolDownTimer;
+    public bool playingPachinko;
+    public int startTime;
+    public float playTime;
+    public int marblesInGame;
+    public int numOfReactions;
+    public int points;
+    
+    public static PachinkoManager instance;
+
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI reactionText;
+    public TextMeshProUGUI timerText;
+    public GameObject resultScreen;
+    public GameObject StartScreen;
+    public Transform[] Spawners;
+
+    private void Awake() { instance = this; }
+
+    void Update()
+    {
+        if (!playingPachinko)
+            return;
+
+        playTime -= Time.deltaTime;
+        if (playTime > 0)
+            timerText.text = playTime.ToString("0s");
+
+        if ((int)playTime % 3 == 0 && !OnCoolDown)
+        {
+            OnCoolDown = true;
+            coolDownTimer = 0;
+            foreach (Transform x in Spawners)
+                StartCoroutine(MarbleSpawnProcedure(x));
+        }
+
+        if (playTime <= 0)
+            EndPachinko();
+
+        if (OnCoolDown)
+        {
+            coolDownTimer += Time.deltaTime;
+            if (coolDownTimer > 1.5f)
+            {
+                OnCoolDown = false;
+            }
+        }
+
+    }
+
+    public void StartPachinko()
+    {
+        // clear UI
+        resultScreen.SetActive(false);
+        StartScreen.SetActive(false);
+        timerText.gameObject.SetActive(true);
+
+        // set blank stats
+        playTime = startTime;
+        numOfReactions = 0;
+        marblesInGame = 0;
+        playingPachinko = true;
+    }
+
+    void EndPachinko()
+    {
+        playingPachinko = false;
+        
+        // display UI and stats
+        DisplayResults();
+    }
+
+    void DisplayResults()
+    {
+        // set results screen active and update text elements
+        resultScreen.SetActive(true);
+        timerText.gameObject.SetActive(false);
+        scoreText.text = "<b>Score:</b> " + points + "pts";
+        reactionText.text = "<b>Reactions:</b> " + numOfReactions;
+    }
+
+    // spawnMarble
+    // include random offset
+    // include random element drop
+    // increment marbles on screen
+    void SpawnMarble(Transform spawner)
+    {
+        int dropRate = Random.Range(-50, 100);
+
+        if (dropRate >= -100 && dropRate <= 40)
+            dropResult = Random.Range(0, 2); // tier 1 elements
+        else if (dropRate > 40 && dropRate <= 60)
+            dropResult = Random.Range(3, 8); // tier 2 elements
+        else if (dropRate > 60 && dropRate <= 80)
+            dropResult = Random.Range(9, 11); // tier 3 elements
+        else if (dropRate > 80 && dropRate <= 90)
+            dropResult = Random.Range(12, 15); // tier 4 and 5 elements
+        else if (dropRate > 90 && dropRate <= 97)
+            dropResult = Random.Range(16, 18); // tier 6 elements
+        else if (dropRate > 97 && dropRate <= 100)
+            dropResult = 19; // tier 7 element
+
+        float offSetX = Random.Range(0, 100);
+        float offSetY = Random.Range(0, 100);
+
+        Vector3 spawnPos = new Vector3(spawner.position.x + (offSetX/50), spawner.position.y + (offSetY/50), 0);
+
+        Instantiate(ChemManager.instance.cookBook[dropResult], spawnPos, Quaternion.identity);
+
+        marblesInGame++;
+    }
+
+    IEnumerator MarbleSpawnProcedure(Transform spawner)
+    {
+        int spawnTimeOffSet = Random.Range(0, 5);
+        yield return new WaitForSeconds(spawnTimeOffSet);
+        SpawnMarble(spawner);
+    }
+}
