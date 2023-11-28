@@ -34,9 +34,9 @@ public class BumperController : MonoBehaviour
     private void FixedUpdate()
     {
         // rotate bumper if space is pressed rotate back to default position if it isn't
-        if (spacePressed && transform.rotation.z < 50)
+        if (spacePressed && transform.rotation.z < raisedAngle.z)
             MoveBumper(raisedAngle);
-        else if (!spacePressed && transform.rotation.z > 0)
+        else if (!spacePressed && transform.rotation.z > loweredAngle.z)
             MoveBumper(loweredAngle);
     }
 

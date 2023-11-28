@@ -41,8 +41,8 @@ public class PachinkoManager : MonoBehaviour
         if (playTime > 0)
             timerText.text = playTime.ToString("0s");
 
-        // every 3 seconds spawn a wave of marbles
-        if ((int)playTime % 3 == 0 && !OnCoolDown)
+        // every 2 seconds spawn a wave of marbles
+        if ((int)playTime % 2 == 0 && !OnCoolDown)
         {
             OnCoolDown = true;
             coolDownTimer = 0;
@@ -125,11 +125,11 @@ public class PachinkoManager : MonoBehaviour
             dropResult = 19; // tier 7 element
 
         // create offsets
-        float offSetX = Random.Range(0, 100);
-        float offSetY = Random.Range(0, 100);
+        float offSetX = Random.Range(-150, 150);
+        float offSetY = Random.Range(-100, 100);
 
         // set offsets to vector3
-        Vector3 spawnPos = new Vector3(spawner.position.x + (offSetX/50), spawner.position.y + (offSetY/50), 0);
+        Vector3 spawnPos = new Vector3(spawner.position.x + (offSetX/70), spawner.position.y + (offSetY/70), 0);
 
         // instantiate marble
         Instantiate(ChemManager.instance.cookBook[dropResult], spawnPos, Quaternion.identity);
@@ -140,7 +140,7 @@ public class PachinkoManager : MonoBehaviour
     //  give marble a random spawn delay
     IEnumerator MarbleSpawnProcedure(Transform spawner)
     {
-        int spawnTimeOffSet = Random.Range(0, 5);
+        int spawnTimeOffSet = Random.Range(0, 1);
         yield return new WaitForSeconds(spawnTimeOffSet);
         SpawnMarble(spawner);
     }

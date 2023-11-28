@@ -50,7 +50,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -79,7 +79,6 @@ MonoBehaviour:
   ingredient1: 8
   ingredient2: 7
   elementTier: 4
-  pointsParticle: {fileID: 1704634368385062330, guid: 02e403ce92a4a9243b41c6fdacf6b11e, type: 3}
 --- !u!1001 &557060337325042356
 PrefabInstance:
   m_ObjectHideFlags: 0
