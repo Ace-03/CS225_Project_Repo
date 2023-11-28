@@ -88,8 +88,8 @@ public class PachinkoManager : MonoBehaviour
         DisplayResults();
 
         // send score to game manager if its the new highScore
-        if (points > GameManager.instance.pachinkoSessionScore)
-            GameManager.instance.pachinkoSessionScore = points;
+        if (points > GameManager.instance.pachinkoScore)
+            GameManager.instance.pachinkoScore = points;
     }
 
     void DisplayResults()
@@ -108,19 +108,19 @@ public class PachinkoManager : MonoBehaviour
     void SpawnMarble(Transform spawner)
     {
         // roll value
-        int dropRate = Random.Range(-50, 100);
+        int dropRate = Random.Range(-100, 101);
 
         // determine drop by the value rolled
         if (dropRate >= -100 && dropRate <= 40)
-            dropResult = Random.Range(0, 2); // tier 1 elements
+            dropResult = Random.Range(0, 3); // tier 1 elements
         else if (dropRate > 40 && dropRate <= 60)
-            dropResult = Random.Range(3, 8); // tier 2 elements
+            dropResult = Random.Range(3, 9); // tier 2 elements
         else if (dropRate > 60 && dropRate <= 80)
-            dropResult = Random.Range(9, 11); // tier 3 elements
+            dropResult = Random.Range(9, 12); // tier 3 elements
         else if (dropRate > 80 && dropRate <= 90)
-            dropResult = Random.Range(12, 15); // tier 4 and 5 elements
+            dropResult = Random.Range(12, 16); // tier 4 and 5 elements
         else if (dropRate > 90 && dropRate <= 97)
-            dropResult = Random.Range(16, 18); // tier 6 elements
+            dropResult = Random.Range(16, 19); // tier 6 elements
         else if (dropRate > 97 && dropRate <= 100)
             dropResult = 19; // tier 7 element
 

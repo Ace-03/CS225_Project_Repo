@@ -5,8 +5,6 @@ using UnityEngine;
 public class PachinkoMarbleBehavior : ElementBehaviour
 {
     public int elementTier;
-    public GameObject pointsParticle;
-
     // checks if item collides with another object
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -39,17 +37,8 @@ public class PachinkoMarbleBehavior : ElementBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // when a marble lands in a peg hole add to our score and destroy the marble.
+        // when a marble lands in a peg hole call the score function
         if (collision.CompareTag("PegHole") && PachinkoManager.instance.playingPachinko)
-            StartCoroutine(ScoreMarble(collision));
-    }
-
-    IEnumerator ScoreMarble(Collider2D col)
-    {
-        yield return new WaitForSeconds(2);
-        PachinkoManager.instance.points += (this.elementTier * col.GetComponent<PegHoleBehaviour>().pointvalue);
-        Instantiate(pointsParticle, this.transform.position, Quaternion.identity);
-        PachinkoManager.instance.marblesInGame--;
-        Destroy(this.gameObject);
+            StartCoroutine(collision.GetComponent<PegHoleBehaviour>().ScoreMarble(this.gameObject));
     }
 }

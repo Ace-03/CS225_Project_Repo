@@ -176,3 +176,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointvalue: 500
+  pointsParticle: {fileID: 1704634368385062330, guid: 02e403ce92a4a9243b41c6fdacf6b11e, type: 3}

@@ -1,7 +1,9 @@
-//Hold all info for recipies and elements
-//CalculateRecipe() which takes two element type object. It will compare those elements
-// with all possible recipe combinations. If the two arguments exist as a recipe then return the 
-// product of that recipe otherwise return null.
+// Hold all info for recipies and elements
+// CalculateRecipe() is the main functionality of this script
+// it will take two element types and compare them to find a matching recipe
+// if a recipe exists it will send the object that has that recipe
+// if there is not match it will return null
+// This script should be present anywhere that chemistry is happening
 
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +21,8 @@ public class ChemManager : MonoBehaviour
     // Function used to determine if two objects are able to create a new element
     public GameObject CalculateRecipe(elementType ele1, elementType ele2)
     {
+        GameManager.instance.reactionAttempts++;
+
         // check the ingredients for every element in the cook book.
         foreach (GameObject x in cookBook)
         {
@@ -42,6 +46,7 @@ public class ChemManager : MonoBehaviour
             }
         }
         // if none of the recipes for any of the objects match then return nothing
+        GameManager.instance.FailedReactions++;
         return null;
     }
 }
