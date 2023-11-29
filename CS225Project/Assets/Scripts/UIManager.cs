@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject pachinkoButton;
 
     // when game start remove start button and title and create base elements
-    public void onStartGame()
+    public void OnStartGame()
     {
         title.SetActive(false);
         pachinkoButton.SetActive(true);
