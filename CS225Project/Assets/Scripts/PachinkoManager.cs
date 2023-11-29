@@ -8,7 +8,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class PachinkoManager : MonoBehaviour
 {
     private int dropResult;
-    private bool OnCoolDown = false;
+    private bool onCoolDown = false;
     private float coolDownTimer;
     public bool playingPachinko;
     public int startTime;
@@ -23,8 +23,8 @@ public class PachinkoManager : MonoBehaviour
     public TextMeshProUGUI reactionText;
     public TextMeshProUGUI timerText;
     public GameObject resultScreen;
-    public GameObject StartScreen;
-    public Transform[] Spawners;
+    public GameObject startScreen;
+    public Transform[] spawners;
 
     private void Awake() { instance = this; }
 
@@ -42,11 +42,11 @@ public class PachinkoManager : MonoBehaviour
             timerText.text = playTime.ToString("0s");
 
         // every 2 seconds spawn a wave of marbles
-        if ((int)playTime % 2 == 0 && !OnCoolDown)
+        if ((int)playTime % 2 == 0 && !onCoolDown)
         {
-            OnCoolDown = true;
+            onCoolDown = true;
             coolDownTimer = 0;
-            foreach (Transform x in Spawners)
+            foreach (Transform x in spawners)
                 StartCoroutine(MarbleSpawnProcedure(x));
         }
 
@@ -55,12 +55,12 @@ public class PachinkoManager : MonoBehaviour
             EndPachinko();
 
         // cool down for marble spawns so they dont drop every frame
-        if (OnCoolDown)
+        if (onCoolDown)
         {
             coolDownTimer += Time.deltaTime;
             if (coolDownTimer > 1.5f)
             {
-                OnCoolDown = false;
+                onCoolDown = false;
             }
         }
 
@@ -70,7 +70,7 @@ public class PachinkoManager : MonoBehaviour
     {
         // clear UI
         resultScreen.SetActive(false);
-        StartScreen.SetActive(false);
+        startScreen.SetActive(false);
         timerText.gameObject.SetActive(true);
 
         // set blank stats
