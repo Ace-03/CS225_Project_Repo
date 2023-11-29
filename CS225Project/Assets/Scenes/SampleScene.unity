@@ -421,8 +421,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.8827, y: -74.75}
-  m_SizeDelta: {x: 253.7654, y: 29.9}
+  m_AnchoredPosition: {x: 223.48, y: -74.75}
+  m_SizeDelta: {x: 446.96, y: 29.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &120372898
 MonoBehaviour:
@@ -471,8 +471,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -756,9 +756,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnHomeScene
+      - m_Target: {fileID: 2113799271}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OnBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2151,7 +2151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &535427034
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3049,8 +3049,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 140.53397, y: -134.55}
-  m_SizeDelta: {x: 281.0679, y: 29.9}
+  m_AnchoredPosition: {x: 223.48, y: -134.55}
+  m_SizeDelta: {x: 446.96, y: 29.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &751768741
 MonoBehaviour:
@@ -3099,8 +3099,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4048,8 +4048,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 183.1165, y: -14.95}
-  m_SizeDelta: {x: 366.233, y: 29.9}
+  m_AnchoredPosition: {x: 223.47809, y: -14.950001}
+  m_SizeDelta: {x: 446.9561, y: 29.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995623495
 MonoBehaviour:
@@ -4098,8 +4098,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4471,7 +4471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1178953169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4537,9 +4537,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 522815426}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnPachinkoScene
+      - m_Target: {fileID: 2113799271}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OnRecords
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5681,8 +5681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 155.25592, y: -104.649994}
-  m_SizeDelta: {x: 310.5118, y: 29.9}
+  m_AnchoredPosition: {x: 223.48, y: -104.649994}
+  m_SizeDelta: {x: 446.96, y: 29.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1544167600
 MonoBehaviour:
@@ -5731,8 +5731,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6216,8 +6216,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 183.1165, y: -44.85}
-  m_SizeDelta: {x: 366.233, y: 29.9}
+  m_AnchoredPosition: {x: 223.48, y: -44.85}
+  m_SizeDelta: {x: 446.96, y: 29.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1877375256
 MonoBehaviour:
@@ -6266,8 +6266,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
