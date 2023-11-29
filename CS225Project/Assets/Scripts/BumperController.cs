@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BumperController : MonoBehaviour
 {
-    public float bumperSpeed;
     private bool spacePressed;
-    public bool facingLeft;
-
     private Quaternion raisedAngle;
     private Quaternion loweredAngle;
+
+    public float bumperSpeed;
+    public bool facingLeft;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +21,7 @@ public class BumperController : MonoBehaviour
             spacePressed = false;
     }
 
-    private void Start()
+    void Start()
     {
         loweredAngle = transform.rotation;
 
@@ -31,7 +31,7 @@ public class BumperController : MonoBehaviour
             raisedAngle = Quaternion.Euler(0, 0, 50);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         // rotate bumper if space is pressed rotate back to default position if it isn't
         if (spacePressed && transform.rotation.z < raisedAngle.z)

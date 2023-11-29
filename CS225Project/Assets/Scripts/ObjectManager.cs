@@ -14,12 +14,12 @@ using UnityEngine.EventSystems;
 
 public class ObjectManager : MonoBehaviour
 {
-    public bool moving;
-
     private float startPosX;
     private float startPosY;
     private bool triggerEnabled = true;
-    
+
+    public bool moving;
+
     void Update()
     {
         if (moving)
