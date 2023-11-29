@@ -41,8 +41,8 @@ public class PachinkoManager : MonoBehaviour
         if (playTime > 0)
             timerText.text = playTime.ToString("0s");
 
-        // every 3 seconds spawn a wave of marbles
-        if ((int)playTime % 3 == 0 && !OnCoolDown)
+        // every 2 seconds spawn a wave of marbles
+        if ((int)playTime % 2 == 0 && !OnCoolDown)
         {
             OnCoolDown = true;
             coolDownTimer = 0;
@@ -88,8 +88,8 @@ public class PachinkoManager : MonoBehaviour
         DisplayResults();
 
         // send score to game manager if its the new highScore
-        if (points > GameManager.instance.pachinkoSessionScore)
-            GameManager.instance.pachinkoSessionScore = points;
+        if (points > GameManager.instance.pachinkoScore)
+            GameManager.instance.pachinkoScore = points;
     }
 
     void DisplayResults()
@@ -108,28 +108,28 @@ public class PachinkoManager : MonoBehaviour
     void SpawnMarble(Transform spawner)
     {
         // roll value
-        int dropRate = Random.Range(-50, 100);
+        int dropRate = Random.Range(-100, 101);
 
         // determine drop by the value rolled
         if (dropRate >= -100 && dropRate <= 40)
-            dropResult = Random.Range(0, 2); // tier 1 elements
+            dropResult = Random.Range(0, 3); // tier 1 elements
         else if (dropRate > 40 && dropRate <= 60)
-            dropResult = Random.Range(3, 8); // tier 2 elements
+            dropResult = Random.Range(3, 9); // tier 2 elements
         else if (dropRate > 60 && dropRate <= 80)
-            dropResult = Random.Range(9, 11); // tier 3 elements
+            dropResult = Random.Range(9, 12); // tier 3 elements
         else if (dropRate > 80 && dropRate <= 90)
-            dropResult = Random.Range(12, 15); // tier 4 and 5 elements
+            dropResult = Random.Range(12, 16); // tier 4 and 5 elements
         else if (dropRate > 90 && dropRate <= 97)
-            dropResult = Random.Range(16, 18); // tier 6 elements
+            dropResult = Random.Range(16, 19); // tier 6 elements
         else if (dropRate > 97 && dropRate <= 100)
             dropResult = 19; // tier 7 element
 
         // create offsets
-        float offSetX = Random.Range(0, 100);
-        float offSetY = Random.Range(0, 100);
+        float offSetX = Random.Range(-150, 150);
+        float offSetY = Random.Range(-100, 100);
 
         // set offsets to vector3
-        Vector3 spawnPos = new Vector3(spawner.position.x + (offSetX/50), spawner.position.y + (offSetY/50), 0);
+        Vector3 spawnPos = new Vector3(spawner.position.x + (offSetX/70), spawner.position.y + (offSetY/70), 0);
 
         // instantiate marble
         Instantiate(ChemManager.instance.cookBook[dropResult], spawnPos, Quaternion.identity);
@@ -140,7 +140,7 @@ public class PachinkoManager : MonoBehaviour
     //  give marble a random spawn delay
     IEnumerator MarbleSpawnProcedure(Transform spawner)
     {
-        int spawnTimeOffSet = Random.Range(0, 5);
+        int spawnTimeOffSet = Random.Range(0, 1);
         yield return new WaitForSeconds(spawnTimeOffSet);
         SpawnMarble(spawner);
     }
