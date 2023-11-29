@@ -18030,8 +18030,8 @@ MonoBehaviour:
   reactionText: {fileID: 1282427996}
   timerText: {fileID: 686768189}
   resultScreen: {fileID: 40937761}
-  StartScreen: {fileID: 358380474}
-  Spawners:
+  startScreen: {fileID: 358380474}
+  spawners:
   - {fileID: 999408112}
   - {fileID: 1645270334}
   - {fileID: 751738102}
@@ -23539,13 +23539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be25ec548e3a1e942bcc1019d566ab89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playTime: 0
   numOfReactions: 0
   reactionAttempts: 0
-  FailedReactions: 0
+  failedReactions: 0
   pachinkoScore: 0
-  fire: {fileID: 7314309161019811615, guid: f631c840908792346bb0f7afaa355393, type: 3}
-  water: {fileID: 1804666611863020606, guid: 4be84431cd479a240a486b850760614c, type: 3}
-  earth: {fileID: 5762738115517670934, guid: 42736a9f761e26f4c96c51021a1f805c, type: 3}
 --- !u!4 &1416907093
 Transform:
   m_ObjectHideFlags: 0
