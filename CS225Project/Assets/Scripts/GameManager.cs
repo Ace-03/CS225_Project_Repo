@@ -11,19 +11,13 @@ using static ElementBehaviour;
 
 public class GameManager : MonoBehaviour
 {
-    private float playTime;
     private bool oldDataLoaded = false;
 
+    public float playTime;
     public int numOfReactions;
     public int reactionAttempts;
-    public int FailedReactions;
+    public int failedReactions;
     public int pachinkoScore;
-
-    public GameObject fire;
-    public GameObject water;
-    public GameObject earth;
-    public static GameManager instance;
-
 
     class GameStats
     {
@@ -34,6 +28,7 @@ public class GameManager : MonoBehaviour
         public int pachinkoHighScore;
     }
 
+    public static GameManager instance;
 
 
     void Awake()
@@ -96,7 +91,7 @@ public class GameManager : MonoBehaviour
         newGameStats.totalPlayTime = playTime;
         newGameStats.totalReactions = numOfReactions;
         newGameStats.totalReactionAttempts = reactionAttempts;
-        newGameStats.totalFailedReactions = FailedReactions;
+        newGameStats.totalFailedReactions = failedReactions;
         newGameStats.pachinkoHighScore = pachinkoScore;
 
         // write values to json
@@ -118,10 +113,11 @@ public class GameManager : MonoBehaviour
             playTime = oldGameStats.totalPlayTime;
             numOfReactions = oldGameStats.totalReactions;
             reactionAttempts = oldGameStats.totalReactionAttempts;
-            FailedReactions = oldGameStats.totalFailedReactions;
+            failedReactions = oldGameStats.totalFailedReactions;
             pachinkoScore = oldGameStats.pachinkoHighScore;
         }
 
     }
+
 
 }
