@@ -46,7 +46,7 @@ public class ChemManager : MonoBehaviour
             }
         }
         // if none of the recipes for any of the objects match then return nothing
-        GameManager.instance.FailedReactions++;
+        GameManager.instance.failedReactions++;
         return null;
     }
 }

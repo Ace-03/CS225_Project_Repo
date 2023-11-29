@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PegHoleBehaviour : MonoBehaviour
 {
-    private int bonus = 50;
+    private int bonus = 4;
 
     public int pointvalue;
     public GameObject pointsParticle;
@@ -13,7 +13,7 @@ public class PegHoleBehaviour : MonoBehaviour
     public IEnumerator ScoreMarble(GameObject col)
     {
         yield return new WaitForSeconds(2);
-        PachinkoManager.instance.points += ((col.GetComponent<PachinkoMarbleBehavior>().elementTier * pointvalue) + (bonus^(col.GetComponent<PachinkoMarbleBehavior>().elementTier - 1)));
+        PachinkoManager.instance.points += ((col.GetComponent<PachinkoMarbleBehavior>().elementTier * pointvalue) + (int)Mathf.Pow(bonus, col.GetComponent<PachinkoMarbleBehavior>().elementTier));
         Instantiate(pointsParticle, this.transform.position, Quaternion.identity);
         PachinkoManager.instance.marblesInGame--;
         Destroy(col.gameObject);
